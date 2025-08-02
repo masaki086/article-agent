@@ -1,0 +1,45 @@
+# APIトークンなどの機密情報
+.claude/config/qiita-token.json
+.claude/config/*-token.json
+.claude/config/secrets.json
+
+# 環境固有の設定
+.env
+.env.local
+*.key
+*.secret
+
+# ログファイル
+*.log
+logs/
+
+# 一時ファイル
+tmp/
+temp/
+.DS_Store
+
+# IDE設定ファイル
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+
+# Node.js（将来の拡張用）
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python（将来の拡張用）
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# バックアップファイル
+*.bak
+*.backup
+*~

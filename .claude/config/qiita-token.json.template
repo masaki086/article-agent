@@ -1,0 +1,12 @@
+{
+  "access_token": "your_qiita_access_token_here",
+  "note": "Qiitaのアクセストークンを設定してください",
+  "instructions": [
+    "1. このファイルをqiita-token.jsonにコピー",
+    "2. https://qiita.com にログイン",
+    "3. 設定 → アプリケーション → 新しくトークンを発行",
+    "4. write_qiita 権限を選択",
+    "5. 発行されたトークンを上記のaccess_tokenに設定"
+  ],
+  "security_note": "このファイルは.gitignoreで除外されています"
+}
