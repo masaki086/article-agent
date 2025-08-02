@@ -3,7 +3,7 @@
 # 執筆者ペルソナ: tanukichi
 
 参照ファイル: /personas/authors/tanukichi.md
-テンプレート: /articles/shared-templates/template-author.md
+テンプレート: /articles/shared-templates/author.md
 
 ## カスタマイズ（このシリーズ専用）
 

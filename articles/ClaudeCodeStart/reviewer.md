@@ -2,7 +2,7 @@
 
 # Claude Code CLAUDE.mdガイドシリーズ レビュワー設定
 
-参照テンプレート: /articles/shared-templates/template-reviewer.md
+参照テンプレート: /articles/shared-templates/reviewer.md
 
 このシリーズの記事レビューを行うAI人格を定義します。
 

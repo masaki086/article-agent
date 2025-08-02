@@ -56,8 +56,8 @@ Note: Shared optimization templates are available at `/articles/shared-templates
 - `series-common.md`: Character settings, common patterns
 - `english-templates.md`: Integrated English templates  
 - `optimized-format.md`: Token-efficient article template
-- `template-author.md`: Reusable author persona template
-- `template-reviewer.md`: Reusable reviewer setup template
+- `author.md`: Reusable author persona template
+- `reviewer.md`: Reusable reviewer setup template
 
 ## Interactive Prompts
 
@@ -165,7 +165,7 @@ Generates all optimized files:
 # 執筆者ペルソナ: {selected_persona_id}
 
 参照ファイル: /personas/authors/{selected_persona_id}.md
-テンプレート: /articles/shared-templates/template-author.md
+テンプレート: /articles/shared-templates/author.md
 
 ## カスタマイズ（このシリーズ専用）
 - **重点テーマ**: {series_theme}
@@ -183,7 +183,7 @@ Generates all optimized files:
 
 # {SeriesName} レビュワー設定
 
-参照テンプレート: /articles/shared-templates/template-reviewer.md
+参照テンプレート: /articles/shared-templates/reviewer.md
 
 ## レビュワー設定
 ### 校正者
