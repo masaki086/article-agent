@@ -1,6 +1,8 @@
-**日付:** 2025-08-02 | **バージョン:** 1.0
+**日付:** 2025-08-02 | **バージョン:** 2.0
 
 # Claude Code CLAUDE.mdガイドシリーズ レビュワー設定
+
+参照テンプレート: /articles/shared-templates/template-reviewer.md
 
 このシリーズの記事レビューを行うAI人格を定義します。
 
@@ -108,3 +110,7 @@
 - 構成パターンの一貫性
 - 前後の記事との連携
 - 最終統合版への準備
+
+## 共有テンプレート参照
+- **共通設定**: `/articles/shared-templates/series-common.md`
+- **最適化フォーマット**: `/articles/shared-templates/optimized-format.md`

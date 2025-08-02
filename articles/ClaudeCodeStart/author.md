@@ -1,8 +1,9 @@
-**日付:** 2025-08-02 | **バージョン:** 1.0
+**日付:** 2025-08-02 | **バージョン:** 2.0
 
 # 執筆者ペルソナ: tanukichi
 
 参照ファイル: /personas/authors/tanukichi.md
+テンプレート: /articles/shared-templates/template-author.md
 
 ## カスタマイズ（このシリーズ専用）
 
@@ -40,3 +41,7 @@
 - **Claude Code初心者**: 基本概念から丁寧に説明
 - **実務での活用**: 実際のプロジェクトで使える実践例
 - **継続的改善**: シリーズを通じて知識を積み上げ
+
+## 共有テンプレート参照
+- **共通設定**: `/articles/shared-templates/series-common.md`
+- **最適化フォーマット**: `/articles/shared-templates/optimized-format.md`

@@ -49,6 +49,8 @@
   - `series-common.md`: 共通キャラクター設定・メッセージパターン
   - `english-templates.md`: 英語版テンプレート統合版
   - `optimized-format.md`: トークン効率化記事フォーマット
+  - `template-author.md`: 執筆者ペルソナ設定テンプレート
+  - `template-reviewer.md`: レビュワー体制設定テンプレート
 - **執筆者設定**: `/articles/{SeriesName}/author.md`（ペルソナ参照形式）
 - **レビュー設定**: `/articles/{SeriesName}/reviewer.md`（ペルソナ参照形式）
 
@@ -72,7 +74,9 @@ article-agent/
 │   ├── shared-templates/                       # 全シリーズ共有最適化テンプレート
 │   │   ├── series-common.md                    # 共通キャラ設定・メッセージパターン
 │   │   ├── english-templates.md                # 英語版テンプレート統合版
-│   │   └── optimized-format.md                 # トークン効率化記事フォーマット
+│   │   ├── optimized-format.md                 # トークン効率化記事フォーマット
+│   │   ├── template-author.md                  # 執筆者ペルソナ設定テンプレート
+│   │   └── template-reviewer.md                # レビュワー体制設定テンプレート
 │   ├── template_format.md                      # 汎用フォーマットテンプレート（非推奨）
 │   └── {SeriesName}/                           # シリーズ固有設定
 │        ├── author.md                          # 執筆者設定（ペルソナ参照）

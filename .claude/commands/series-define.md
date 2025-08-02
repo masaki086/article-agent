@@ -56,6 +56,8 @@ Note: Shared optimization templates are available at `/articles/shared-templates
 - `series-common.md`: Character settings, common patterns
 - `english-templates.md`: Integrated English templates  
 - `optimized-format.md`: Token-efficient article template
+- `template-author.md`: Reusable author persona template
+- `template-reviewer.md`: Reusable reviewer setup template
 
 ## Interactive Prompts
 
@@ -156,25 +158,32 @@ Generates all optimized files:
 {defined_audience}
 ```
 
-**author.md** (ペルソナ参照形式)
+**author.md** (共有テンプレート使用)
 ```markdown
 **Date:** {current_date} | **Version:** 1.0
 
 # 執筆者ペルソナ: {selected_persona_id}
 
 参照ファイル: /personas/authors/{selected_persona_id}.md
+テンプレート: /articles/shared-templates/template-author.md
 
 ## カスタマイズ（このシリーズ専用）
 - **重点テーマ**: {series_theme}
 - **特別な文体調整**: {style_customization}
 - **読者層への配慮**: {target_audience_consideration}
+
+## 共有テンプレート参照
+- **共通設定**: `/articles/shared-templates/series-common.md`
+- **最適化フォーマット**: `/articles/shared-templates/optimized-format.md`
 ```
 
-**reviewer.md** (最適化されたレビュー体制)
+**reviewer.md** (共有テンプレート使用)
 ```markdown
 **Date:** {current_date} | **Version:** 1.0
 
 # {SeriesName} レビュワー設定
+
+参照テンプレート: /articles/shared-templates/template-reviewer.md
 
 ## レビュワー設定
 ### 校正者
@@ -183,6 +192,10 @@ Generates all optimized files:
 ペルソナ ID: {recommended_reviewer}
 ### 読者ペルソナ
 {recommended_reader_personas}
+
+## 共有テンプレート参照
+- **共通設定**: `/articles/shared-templates/series-common.md`
+- **最適化フォーマット**: `/articles/shared-templates/optimized-format.md`
 ```
 
 Note: The series will reference shared optimization templates:
