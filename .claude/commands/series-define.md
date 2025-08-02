@@ -39,11 +39,15 @@ Configure:
 ### Step 6: Series Generation
 Automatically create:
 1. **Series Directory**: `/articles/{SeriesName}/`
-2. **series-common.md**: Character settings, common patterns
-3. **english-templates.md**: Integrated English templates
-4. **optimized-format.md**: Token-efficient article template
-5. **author.md**: Persona configuration
-6. **reviewer.md**: Review setup
+2. **author.md**: Persona configuration (references shared templates)
+3. **format.md**: Series-specific formatting rules
+4. **reviewer.md**: Review setup
+5. **Article directories**: Individual article folders with draft structure
+
+Note: Shared optimization templates are available at `/articles/shared-templates/`:
+- `series-common.md`: Character settings, common patterns
+- `english-templates.md`: Integrated English templates  
+- `optimized-format.md`: Token-efficient article template
 
 ## Interactive Prompts
 
@@ -173,10 +177,11 @@ Generates all optimized files:
 {recommended_reader_personas}
 ```
 
-**optimized-format.md** (トークン効率化テンプレート)
-- series-common.md参照方式
-- 記事固有内容のみに集中
-- 25-35%トークン削減設計
+Note: The series will reference shared optimization templates:
+- `/articles/shared-templates/series-common.md`: Common character settings
+- `/articles/shared-templates/english-templates.md`: Reusable English code templates
+- `/articles/shared-templates/optimized-format.md`: Token-efficient article template
+- 25-35% token reduction through shared references
 
 ### 3. Optimized File Generation
 - Copy appropriate templates

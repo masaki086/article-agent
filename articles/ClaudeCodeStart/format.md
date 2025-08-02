@@ -10,6 +10,12 @@
 - **執筆者の感情**: Claude Code普及への強い熱意、実践的価値提供への情熱
 - **熱意**: 読者が確実にCLAUDE.mdを作成できるようになってほしい特別な思い
 
+### 共有テンプレート参照
+このシリーズは以下の共有最適化テンプレートを活用します：
+- **共通設定**: `/articles/shared-templates/series-common.md`
+- **英語テンプレート**: `/articles/shared-templates/english-templates.md`
+- **最適化フォーマット**: `/articles/shared-templates/optimized-format.md`
+
 ### 文章アイディア
 
 #### アイディア１: 段階的構築スタイル

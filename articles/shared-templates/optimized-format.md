@@ -3,8 +3,8 @@
 # 最適化記事フォーマット（トークン効率版）
 
 ## 使用方法
-- 共通情報は `/articles/ClaudeCodeStart/series-common.md` を参照
-- 英語版テンプレートは `/articles/ClaudeCodeStart/english-templates.md` を参照
+- 共通情報は `/articles/shared-templates/series-common.md` を参照
+- 英語版テンプレートは `/articles/shared-templates/english-templates.md` を参照
 - 記事固有の内容のみをこのフォーマットで作成
 
 ## 📄 最適化記事テンプレート
@@ -46,7 +46,7 @@
 - [要点3]
 
 ## 英語版コピペ用
-参照: `/articles/ClaudeCodeStart/english-templates.md` の該当セクション
+参照: `/articles/shared-templates/english-templates.md` の該当セクション
 
 ## 次回予告
 [次記事への橋渡し]

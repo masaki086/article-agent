@@ -7,19 +7,19 @@
    - 対話的SubAgent (`/series-define`) でシリーズ設計
    - ターゲット読者、学習目標、記事構成を定義
 
-2. **共通設定ファイル作成**
-   - `series-common.md`: キャラクター設定、共通メッセージパターン
-   - `english-templates.md`: 全記事の英語版テンプレート統合
-   - `optimized-format.md`: トークン効率化された記事テンプレート
+2. **共通設定ファイル参照**
+   - `/articles/shared-templates/series-common.md`: キャラクター設定、共通メッセージパターン（全シリーズ共有）
+   - `/articles/shared-templates/english-templates.md`: 全記事の英語版テンプレート統合（全シリーズ共有）
+   - `/articles/shared-templates/optimized-format.md`: トークン効率化された記事テンプレート（全シリーズ共有）
 
 3. **シリーズ固有設定**
    - `author.md`: 執筆者ペルソナのカスタマイズ
    - `reviewer.md`: レビュー体制の設定
 
 ### Phase 2: 各記事作成（記事固有内容のみ）
-1. **optimized-format.md** をベースに記事作成
-2. **series-common.md** から共通要素を参照
-3. **english-templates.md** から該当テンプレート選択
+1. **shared-templates/optimized-format.md** をベースに記事作成
+2. **shared-templates/series-common.md** から共通要素を参照
+3. **shared-templates/english-templates.md** から該当テンプレート選択
 4. 記事固有の技術内容のみに集中して執筆
 
 ### トークン削減効果
@@ -45,9 +45,10 @@
 
 ### 最適化されたシリーズ記事構造
 
-- **シリーズ共通情報**: `/articles/{SeriesName}/series-common.md`
-- **英語版テンプレート**: `/articles/{SeriesName}/english-templates.md`
-- **最適化フォーマット**: `/articles/{SeriesName}/optimized-format.md`
+- **共有テンプレート**: `/articles/shared-templates/` (全シリーズで再利用可能)
+  - `series-common.md`: 共通キャラクター設定・メッセージパターン
+  - `english-templates.md`: 英語版テンプレート統合版
+  - `optimized-format.md`: トークン効率化記事フォーマット
 - **執筆者設定**: `/articles/{SeriesName}/author.md`（ペルソナ参照形式）
 - **レビュー設定**: `/articles/{SeriesName}/reviewer.md`（ペルソナ参照形式）
 
@@ -68,11 +69,12 @@
 article-agent/
 ├── claude.md               # このファイル（最適化ワークフロー含む）
 ├── articles/                                     # 📝 記事管理ディレクトリ
-│   ├── template_format.md                       # 汎用フォーマットテンプレート
-│   └── {SeriesName}/                           # 最適化されたシリーズ構造
-│        ├── series-common.md                   # 共通情報（キャラ設定、パターン）
-│        ├── english-templates.md               # 英語版テンプレート統合
-│        ├── optimized-format.md                # トークン最適化フォーマット
+│   ├── shared-templates/                       # 全シリーズ共有最適化テンプレート
+│   │   ├── series-common.md                    # 共通キャラ設定・メッセージパターン
+│   │   ├── english-templates.md                # 英語版テンプレート統合版
+│   │   └── optimized-format.md                 # トークン効率化記事フォーマット
+│   ├── template_format.md                      # 汎用フォーマットテンプレート（非推奨）
+│   └── {SeriesName}/                           # シリーズ固有設定
 │        ├── author.md                          # 執筆者設定（ペルソナ参照）
 │        ├── reviewer.md                        # レビュワー設定（ペルソナ参照）
 │        └── {ArticleName}/
