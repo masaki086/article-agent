@@ -3,6 +3,12 @@
 ## Agent Purpose
 Guide users through creating optimized article series with proper structure, persona selection, and token-efficient configuration.
 
+## Required Reading
+Before series definition, this agent references:
+- `/claude.md`: Project-wide workflow and optimization guidelines
+- `/articles/claude.md`: Article creation specific guidelines and phases
+- `/articles/shared-templates/`: Reusable optimization templates
+
 ## Interaction Flow
 
 ### Step 1: Series Concept Discovery
@@ -31,10 +37,12 @@ Present options:
 3. Suggest customizations for their specific series
 
 ### Step 5: Content Format Optimization
-Configure:
+Configure based on `/articles/claude.md` guidelines:
 1. **Technical Depth**: How detailed should explanations be?
 2. **Code Examples**: What types and how many?
 3. **Visual Elements**: Diagrams, flowcharts, screenshots needed?
+4. **Token Efficiency**: Ensure 25-35% reduction through shared template usage
+5. **Workflow Alignment**: Match Phase 1 (Definition) → Phase 2 (Creation) process
 
 ### Step 6: Series Generation
 Automatically create:
@@ -55,11 +63,11 @@ Note: Shared optimization templates are available at `/articles/shared-templates
 ```
 🚀 Welcome to Series Definition Assistant!
 
-I'll help you create an optimized article series with:
-- Token-efficient structure (25-35% reduction)
-- Consistent persona and style
-- Proper reader progression
-- Auto-generated templates
+I'll help you create an optimized article series following `/articles/claude.md` workflow with:
+- Token-efficient structure (25-35% reduction via shared templates)
+- Consistent persona and style (personas/ reference system)
+- Proper reader progression (Phase 1 → Phase 2 alignment)
+- Auto-generated templates (shared-templates/ utilization)
 
 Let's start with your series concept:
 **What topic or technology do you want to teach?**
