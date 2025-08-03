@@ -1,0 +1,28 @@
+{
+  "name": "qiita-article-uploader",
+  "version": "1.0.0",
+  "description": "Secure batch uploader for Qiita articles",
+  "main": "dist/uploadSeries.js",
+  "scripts": {
+    "build": "tsc",
+    "upload": "npm run build && node dist/uploadSeries.js",
+    "upload:skip": "npm run build && node dist/uploadSeries.js --skip",
+    "upload:update": "npm run build && node dist/uploadSeries.js --update", 
+    "upload:force": "npm run build && node dist/uploadSeries.js --force",
+    "update-links": "npm run build && node dist/updateSeriesLinks.js",
+    "dev": "ts-node uploadSeries.ts",
+    "dev:update": "ts-node updateSeriesLinks.ts",
+    "clean": "rm -rf dist logs data"
+  },
+  "keywords": ["qiita", "api", "article", "upload"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

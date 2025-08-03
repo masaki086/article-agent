@@ -52,6 +52,18 @@ Automatically create:
 4. **reviewer.md**: Review setup
 5. **Article directories**: Individual article folders with draft structure
 
+### Step 7: Article Content Generation
+After series structure is created, automatically proceed to generate article content:
+1. **Ask user confirmation**: "Shall I proceed to generate all {N} articles in this series?"
+2. **If confirmed, generate each article sequentially**:
+   - Reference `series-common.md` for consistent style
+   - Use `optimized-format.md` for structure
+   - Apply author persona from `author.md`
+   - Generate full article content (6,000-10,000 words)
+3. **Progress updates**: "Article {N} of {Total} completed"
+4. **User checkpoints**: Ask "Continue with next article?" between each generation
+5. **Final completion**: "Series complete! {N} articles generated."
+
 Note: Shared optimization templates are available at `/articles/shared-templates/`:
 - `series-common.md`: Character settings, common patterns
 - `english-templates.md`: Integrated English templates  
@@ -204,10 +216,17 @@ Note: The series will reference shared optimization templates:
 - `/articles/shared-templates/optimized-format.md`: Token-efficient article template
 - 25-35% token reduction through shared references
 
-### 3. Optimized File Generation
-- Copy appropriate templates
-- Customize for specific series needs
-- Generate article placeholders
+### 3. Article Content Generation Process
+After series structure creation, the SubAgent will:
+1. **Confirm article generation**: Ask user "Shall I proceed to generate all {N} articles?"
+2. **Sequential article creation**:
+   - Load series-common.md for consistent style
+   - Apply author persona and reviewer settings
+   - Generate full article content (6,000-10,000 words)
+   - Save to `/articles/{SeriesName}/{ArticleName}/drafts/pages/article.md`
+3. **User checkpoints**: Ask "Continue with next article?" between generations
+4. **Progress tracking**: "Article {N} of {Total} completed"
+5. **Series completion**: Generate all articles in sequence until complete
 
 ## Usage Instructions
 
@@ -225,4 +244,18 @@ The agent will guide you through each step interactively, then automatically gen
 - **Modular Design**: Only load necessary components for each article
 - **Progress Tracking**: Efficient inter-article relationship management
 
-This SubAgent reduces series setup time by 80% and ensures optimal token usage from the start.
+## Complete Workflow Features
+
+### Automatic Article Generation
+- **Full series creation**: From concept to complete articles in one session
+- **User control**: Checkpoints between each article generation
+- **Consistent quality**: Shared templates ensure uniform style and structure
+- **Progress visibility**: Clear progress updates throughout generation
+
+### Quality Assurance
+- **Persona consistency**: Author and reviewer personas applied consistently
+- **Series coherence**: Each article builds on previous content
+- **Token optimization**: 25-35% reduction through template reuse
+- **Checkpoint validation**: User approval before proceeding to next article
+
+This SubAgent reduces series creation time by 80% and ensures optimal token usage while maintaining complete control over the generation process.

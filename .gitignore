@@ -43,3 +43,9 @@ env/
 *.bak
 *.backup
 *~
+
+# Qiita uploader generated files
+post/qiita/node_modules/
+post/qiita/dist/
+post/qiita/logs/
+post/qiita/data/
