@@ -1,0 +1,92 @@
+graph TD
+    A(メトリクス収集<br/>　　継続的監視　　) -.-> B{閾値判定}
+    
+    B -.->|正常範囲内| C(正常状態<br/>　　継続監視　　)
+    B -.->|閾値超過| D(アラート候補<br/>　　検出　　)
+    
+    C -.-> A
+    
+    D -.-> E{継続時間チェック}
+    E -.->|短時間<br/>一時的| F(待機<br/>　　再検査　　)
+    E -.->|継続中<br/>2分以上| G(アラート<br/>　　発報決定　　)
+    
+    F -.-> A
+    
+    G -.-> H{重要度判定}
+    H -.->|Critical| I(即座に通知<br/>　　緊急対応　　)
+    H -.->|Warning| J(通常通知<br/>　　注意喚起　　)
+    H -.->|Info| K(ログ記録<br/>　　情報保存　　)
+    
+    I -.-> L(複数チャンネル<br/>同時通知)
+    L -.-> M(Slack<br/>即時通知)
+    L -.-> N(Email<br/>詳細情報)
+    L -.-> O(PagerDuty<br/>エスカレーション)
+    L -.-> P(SMS<br/>緊急時)
+    
+    J -.-> Q(Slack通知<br/>　　チーム共有　　)
+    K -.-> R(ログファイル<br/>　　記録保存　　)
+    
+    M -.-> S(担当者確認)
+    N -.-> S
+    Q -.-> S
+    
+    S -.-> T{対応状況確認}
+    T -.->|対応中| U(ステータス<br/>　　更新　　)
+    T -.->|解決済み| V(解決確認<br/>　　処理　　)
+    
+    U -.-> W(定期的な<br/>進捗確認)
+    W -.-> T
+    
+    V -.-> X(メトリクス<br/>　　正常化確認　　)
+    X -.-> Y{再発チェック}
+    Y -.->|正常化| Z(アラート<br/>　　終了　　)
+    Y -.->|再発| AA(再アラート<br/>　　発報　　)
+    
+    AA -.-> H
+    Z -.-> A
+    
+    BB(自動化機能) -.-> CC(自動復旧<br/>試行)
+    BB -.-> DD(ログ収集<br/>強化)
+    BB -.-> EE(メトリクス<br/>詳細記録)
+    
+    CC -.-> FF{復旧成功？}
+    FF -.->|成功| GG(自動解決<br/>　　通知　　)
+    FF -.->|失敗| HH(手動対応<br/>　　要求　　)
+    
+    GG -.-> V
+    HH -.-> I
+    
+    style A fill:#e1f5fe,color:#000000,stroke:#01579b,stroke-width:2px
+    style B fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style E fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style H fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style T fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style Y fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style FF fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style I fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style J fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style K fill:#e8f5e8,color:#000000,stroke:#1b5e20,stroke-width:2px
+    style L fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style C fill:#d1fae5,color:#000000,stroke:#10b981,stroke-width:2px
+    style Z fill:#d1fae5,color:#000000,stroke:#10b981,stroke-width:2px
+    style GG fill:#d1fae5,color:#000000,stroke:#10b981,stroke-width:2px
+    style BB fill:#f3e5f5,color:#000000,stroke:#4a148c,stroke-width:2px
+    style D fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style F fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style G fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style M fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style N fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style O fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style P fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Q fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style R fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style S fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style U fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style V fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style W fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style X fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style AA fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style CC fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style DD fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style EE fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style HH fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px

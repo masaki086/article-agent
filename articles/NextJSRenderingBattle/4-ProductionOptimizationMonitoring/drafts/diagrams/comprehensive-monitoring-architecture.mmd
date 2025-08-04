@@ -1,0 +1,103 @@
+graph TD
+    A(ユーザー<br/>　　アクセス　　) -.-> B(CDN<br/>　　Cloudflare/AWS　　)
+    
+    B -.-> C(Load Balancer<br/>　　負荷分散　　)
+    C -.-> D(Next.js App<br/>　　アプリケーション　　)
+    D -.-> E(データベース<br/>　　PostgreSQL/Redis　　)
+    
+    subgraph "フロントエンド監視"
+        F(RUM<br/>Real User Monitoring) -.-> G(Web Vitals<br/>収集)
+        F -.-> H(エラー<br/>トラッキング)
+        F -.-> I(ユーザー行動<br/>分析)
+        
+        G -.-> J(Core Web Vitals)
+        J -.-> K(FCP/LCP/CLS<br/>FID/TTFB)
+    end
+    
+    subgraph "インフラ監視"
+        L(サーバーメトリクス) -.-> M(CPU/Memory<br/>使用率)
+        L -.-> N(ディスク<br/>I/O)
+        L -.-> O(ネットワーク<br/>トラフィック)
+        
+        P(APM<br/>Application Performance Monitoring) -.-> Q(レスポンス時間)
+        P -.-> R(スループット)
+        P -.-> S(エラー率)
+    end
+    
+    subgraph "データベース監視"
+        T(DB Performance) -.-> U(クエリ実行時間)
+        T -.-> V(接続プール<br/>使用率)
+        T -.-> W(ロック<br/>待機時間)
+    end
+    
+    subgraph "外部サービス監視"    
+        X(Third-party APIs) -.-> Y(API応答時間)
+        X -.-> Z(エラー率)
+        X -.-> AA(可用性)
+    end
+    
+    BB(監視データ集約) -.-> CC(Datadog<br/>New Relic<br/>Grafana)
+    
+    F -.-> BB
+    L -.-> BB  
+    P -.-> BB
+    T -.-> BB
+    X -.-> BB
+    
+    CC -.-> DD(アラート<br/>システム)
+    CC -.-> EE(ダッシュボード<br/>可視化)
+    CC -.-> FF(レポート<br/>生成)
+    
+    DD -.-> GG(Slack/Email<br/>通知)
+    DD -.-> HH(PagerDuty<br/>インシデント管理)
+    
+    II(監視レベル) -.-> JJ(リアルタイム<br/>1分間隔)
+    II -.-> KK(短期監視<br/>5分間隔)
+    II -.-> LL(長期トレンド<br/>1時間間隔)
+    
+    MM(自動化対応) -.-> NN(Auto Scaling<br/>負荷対応)
+    MM -.-> OO(ヘルスチェック<br/>再起動)
+    MM -.-> PP(ログローテーション<br/>容量管理)
+    
+    style A fill:#e1f5fe,color:#000000,stroke:#01579b,stroke-width:2px
+    style B fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style C fill:#e8f5e8,color:#000000,stroke:#1b5e20,stroke-width:2px
+    style D fill:#f3e5f5,color:#000000,stroke:#4a148c,stroke-width:2px
+    style E fill:#e3f2fd,color:#000000,stroke:#0d47a1,stroke-width:2px
+    style F fill:#fff8e1,color:#000000,stroke:#f57c00,stroke-width:2px
+    style L fill:#e8f5e8,color:#000000,stroke:#2e7d32,stroke-width:2px
+    style P fill:#f3e5f5,color:#000000,stroke:#6a1b9a,stroke-width:2px
+    style T fill:#e3f2fd,color:#000000,stroke:#1565c0,stroke-width:2px
+    style X fill:#fce4ec,color:#000000,stroke:#ad1457,stroke-width:2px
+    style BB fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style CC fill:#e0f2fe,color:#000000,stroke:#0288d1,stroke-width:3px
+    style DD fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style II fill:#f9fbe7,color:#000000,stroke:#689f38,stroke-width:2px
+    style MM fill:#e8f5e8,color:#000000,stroke:#388e3c,stroke-width:2px
+    style G fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style H fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style I fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style J fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style K fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style M fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style N fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style O fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Q fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style R fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style S fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style U fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style V fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style W fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Y fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Z fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style AA fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style EE fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style FF fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style GG fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style HH fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style JJ fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style KK fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style LL fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style NN fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style OO fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style PP fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px

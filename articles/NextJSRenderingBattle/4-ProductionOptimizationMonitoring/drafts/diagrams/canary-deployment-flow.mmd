@@ -1,0 +1,111 @@
+graph TD
+    A(新バージョン<br/>　　デプロイ開始　　) -.-> B(Stage 1<br/>　　5%トラフィック　　)
+    
+    B -.-> C{成功基準チェック}
+    C -.->|エラー率 > 1%| D(即座にロールバック<br/>　　全トラフィック旧版　　)
+    C -.->|レスポンス時間 > 2秒| D
+    C -.->|基準クリア| E(Stage 2<br/>　　25%トラフィック　　)
+    
+    D -.-> F(ロールバック完了<br/>　　問題調査開始　　)
+    
+    E -.-> G(10分間監視)
+    G -.-> H{成功基準チェック}
+    H -.->|基準未達成| I(部分ロールバック<br/>　　5%に縮小　　)
+    H -.->|基準クリア| J(Stage 3<br/>　　50%トラフィック　　)
+    
+    I -.-> K{問題解決可能？}
+    K -.->|Yes| L(修正版デプロイ<br/>　　Stage 1から再開　　)
+    K -.->|No| D
+    
+    L -.-> B
+    
+    J -.-> M(15分間監視)
+    M -.-> N{成功基準チェック}
+    N -.->|基準未達成| O(部分ロールバック<br/>　　25%に縮小　　)
+    N -.->|基準クリア| P(Stage 4<br/>　　100%トラフィック　　)
+    
+    O -.-> K
+    
+    P -.-> Q(30分間監視)
+    Q -.-> R{最終成功基準チェック}
+    R -.->|基準未達成| S(緊急ロールバック<br/>　　全面復旧　　)
+    R -.->|全基準クリア| T(デプロイ成功<br/>　　完了　　)
+    
+    S -.-> F
+    
+    subgraph "監視メトリクス"
+        U(エラー率) -.-> V(< 1%)
+        W(レスポンス時間) -.-> X(< 2秒)
+        Y(CPU使用率) -.-> Z(< 80%)
+        AA(メモリ使用率) -.-> BB(< 85%)
+        CC(データベース) -.-> DD(接続正常)
+    end
+    
+    subgraph "自動化機能"
+        EE(自動監視) -.-> FF(リアルタイム<br/>メトリクス収集)
+        EE -.-> GG(閾値超過<br/>自動検知)
+        EE -.-> HH(自動ロールバック<br/>実行)
+        
+        II(通知システム) -.-> JJ(Slack通知<br/>進捗報告)
+        II -.-> KK(Email通知<br/>詳細レポート)
+        II -.-> LL(PagerDuty<br/>緊急時対応)
+    end
+    
+    MM(段階別期間) -.-> NN(Stage 1: 10分)
+    MM -.-> OO(Stage 2: 15分)
+    MM -.-> PP(Stage 3: 20分)
+    MM -.-> QQ(Stage 4: 30分)
+    
+    RR(安全機能) -.-> SS(自動ロールバック)
+    RR -.-> TT(トラフィック制御)
+    RR -.-> UU(ヘルスチェック)
+    RR -.-> VV(メトリクス監視)
+    
+    style A fill:#e1f5fe,color:#000000,stroke:#01579b,stroke-width:2px
+    style B fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style E fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style J fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style P fill:#fff3e0,color:#000000,stroke:#e65100,stroke-width:2px
+    style T fill:#d1fae5,color:#000000,stroke:#10b981,stroke-width:3px
+    style D fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style I fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style O fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style S fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style F fill:#fee2e2,color:#000000,stroke:#dc2626,stroke-width:2px
+    style C fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style H fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style N fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style R fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style K fill:#fef3c7,color:#000000,stroke:#f59e0b,stroke-width:2px
+    style U fill:#e8f4fd,color:#000000,stroke:#1976d2,stroke-width:2px
+    style W fill:#e8f4fd,color:#000000,stroke:#1976d2,stroke-width:2px
+    style Y fill:#e8f4fd,color:#000000,stroke:#1976d2,stroke-width:2px
+    style AA fill:#e8f4fd,color:#000000,stroke:#1976d2,stroke-width:2px
+    style CC fill:#e8f4fd,color:#000000,stroke:#1976d2,stroke-width:2px
+    style EE fill:#f3e5f5,color:#000000,stroke:#4a148c,stroke-width:2px
+    style II fill:#f3e5f5,color:#000000,stroke:#4a148c,stroke-width:2px
+    style MM fill:#e8f5e8,color:#000000,stroke:#2e7d32,stroke-width:2px
+    style RR fill:#fce4ec,color:#000000,stroke:#ad1457,stroke-width:2px
+    style G fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style L fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style M fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Q fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style V fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style X fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style Z fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style BB fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style DD fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style FF fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style GG fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style HH fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style JJ fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style KK fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style LL fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style NN fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style OO fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style PP fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style QQ fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style SS fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style TT fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style UU fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
+    style VV fill:#ffffff,color:#000000,stroke:#9ca3af,stroke-width:1px
