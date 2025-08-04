@@ -206,9 +206,9 @@ After collecting all information, generate:
 ### 1. Series Directory Structure
 ```bash
 mkdir -p articles/{SeriesName}
-mkdir -p articles/{SeriesName}/{Article1Name}/drafts/pages
-mkdir -p articles/{SeriesName}/{Article2Name}/drafts/pages
-# ... for each article
+mkdir -p articles/{SeriesName}/1-{Article1Name}/drafts/pages
+mkdir -p articles/{SeriesName}/2-{Article2Name}/drafts/pages
+# ... for each article (numbered: 1-, 2-, 3-, etc.)
 ```
 
 ### 2. Complete File Generation
@@ -303,7 +303,7 @@ After series structure creation, the command will:
    - Load series-common.md for consistent style
    - Apply unified persona in author role and reviewer settings
    - Generate full article content (6,000-10,000 words)
-   - Save to `/articles/{SeriesName}/{ArticleName}/drafts/pages/article.md`
+   - Save to `/articles/{SeriesName}/{N}-{ArticleName}/drafts/pages/article.md`
    - **Automatically invoke quality-checker agent**
    - Apply automatic corrections and generate quality report
 3. **User checkpoints**: Ask "Continue with next article?" between generations
