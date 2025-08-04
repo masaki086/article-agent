@@ -7,20 +7,29 @@
     "build": "tsc",
     "upload": "npm run build && node dist/uploadSeries.js",
     "upload:skip": "npm run build && node dist/uploadSeries.js --skip",
-    "upload:update": "npm run build && node dist/uploadSeries.js --update", 
+    "upload:update": "npm run build && node dist/uploadSeries.js --update",
     "upload:force": "npm run build && node dist/uploadSeries.js --force",
+    "upload-images": "npm run build && node dist/uploadImages.js",
     "update-links": "npm run build && node dist/updateSeriesLinks.js",
     "dev": "ts-node uploadSeries.ts",
     "dev:update": "ts-node updateSeriesLinks.ts",
+    "dev:images": "ts-node uploadImages.ts",
     "clean": "rm -rf dist logs data"
   },
-  "keywords": ["qiita", "api", "article", "upload"],
+  "keywords": [
+    "qiita",
+    "api",
+    "article",
+    "upload"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.0"
+    "axios": "^1.11.0",
+    "form-data": "^4.0.4"
   },
   "devDependencies": {
+    "@types/form-data": "^2.5.0",
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"
