@@ -62,7 +62,35 @@ After series structure is created, automatically proceed to generate article con
    - Generate full article content (6,000-10,000 words)
 3. **Progress updates**: "Article {N} of {Total} completed"
 4. **User checkpoints**: Ask "Continue with next article?" between each generation
-5. **Final completion**: "Series complete! {N} articles generated."
+5. **Automatic Quality Check**: After each article completion, run comprehensive quality checks
+6. **Final completion**: "Series complete! {N} articles generated and quality-checked."
+
+### Step 8: Automatic Quality Check (NEW)
+After each article is completed, automatically perform:
+
+**Format Consistency Checks:**
+- Check for duplicate metadata (Generated Tags/timestamps)
+- Verify markdown syntax correctness
+- Ensure code block opening/closing tag correspondence
+- Check directory structure display consistency
+
+**Content Quality Checks:**
+- Scan for typos and inconsistent terminology
+- Verify logical flow and series consistency
+- Check technical accuracy and version information
+- Validate TypeScript code examples for type safety
+
+**Automated Corrections:**
+- Remove duplicate Generated Tags/timestamps
+- Fix TypeScript type safety issues
+- Remove unnecessary consecutive ``` tags
+- Standardize technical version notation
+- Remove trailing whitespace in code blocks
+
+**Quality Reporting:**
+- Generate quality score (target: 95+/100)
+- Report fixed issues to user
+- Highlight any remaining manual fixes needed
 
 Note: Shared optimization templates are available at `/articles/shared-templates/`:
 - `series-common.md`: Character settings, common patterns
@@ -224,9 +252,11 @@ After series structure creation, the SubAgent will:
    - Apply author persona and reviewer settings
    - Generate full article content (6,000-10,000 words)
    - Save to `/articles/{SeriesName}/{ArticleName}/drafts/pages/article.md`
+   - **Automatically invoke quality-checker agent**
+   - Apply automatic corrections and generate quality report
 3. **User checkpoints**: Ask "Continue with next article?" between generations
-4. **Progress tracking**: "Article {N} of {Total} completed"
-5. **Series completion**: Generate all articles in sequence until complete
+4. **Progress tracking**: "Article {N} of {Total} completed - Quality Score: {score}/100"
+5. **Series completion**: Generate all articles in sequence until complete with quality assurance
 
 ## Usage Instructions
 

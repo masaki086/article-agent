@@ -1,12 +1,8 @@
 # はじめてのCLAUDE.md作成 - 基本版から実用版まで - Claude Code入門ガイド #2
 
 <!--
-Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング
+Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング, React, TypeScript, 開発効率
 Generated at: 2025-08-04T08:33:10.311628
--->
-<!--
-Generated Tags: Claude, React, TypeScript, 開発効率, プログラミング
-Generated at: 2025-08-03T16:45:13.234567
 -->
 
 
@@ -125,7 +121,7 @@ CLAUDE.mdがあれば、新しいメンバーが参加しても：
 
 ## 技術スタック
 ### フロントエンド
-- React 18.2+ (Hooks中心)
+- React 18+ (Hooks中心)
 - TypeScript 5.0+
 - Vite (ビルドツール)
 - Tailwind CSS (スタイリング)
@@ -152,7 +148,7 @@ CLAUDE.mdがあれば、新しいメンバーが参加しても：
 - Cloudflare (CDN)
 ```
 
-ポイントは**具体性**です。「React」ではなく「React 18.2+ (Hooks中心)」と書くことで、AIが適切なコードを生成できます。
+ポイントは**具体性**です。「React」ではなく「React 18+ (Hooks中心)」と書くことで、AIが適切なコードを生成できます。
 
 ## Step2: 開発ルールの設定
 
@@ -265,7 +261,6 @@ describe('TaskList Component', () => {
   });
 });
 ```
-```
 
 ## Step5: ファイル構造とプロジェクト構成
 
@@ -273,7 +268,7 @@ describe('TaskList Component', () => {
 # ファイル構造
 
 ## ディレクトリ構成
-```
+
 src/
 ├── components/          # 再利用可能なコンポーネント
 │   ├── ui/             # プリミティブなUIコンポーネント
@@ -285,7 +280,6 @@ src/
 ├── api/                # API関連の処理
 ├── constants/          # 定数定義
 └── styles/             # グローバルスタイル
-```
 
 ## 重要ファイルの説明
 
@@ -391,7 +385,7 @@ Focus on simplicity and fast operation, avoiding over-complexity of existing too
 
 ## Tech Stack
 ### Frontend
-- React 18.2+ (Hooks-centered)
+- React 18+ (Hooks-centered)
 - TypeScript 5.0+
 - Vite (build tool)
 - Tailwind CSS (styling)
@@ -447,7 +441,7 @@ Focus on simplicity and fast operation, avoiding over-complexity of existing too
 - API endpoints: 85%+
 
 # File Structure
-```
+
 src/
 ├── components/     # Reusable components
 ├── pages/         # Page components
@@ -456,7 +450,6 @@ src/
 ├── types/         # TypeScript definitions
 ├── api/           # API logic
 └── constants/     # Constants
-```
 
 # Important Constraints
 - Personal data must be encrypted

@@ -1,0 +1,35 @@
+{
+  "commands": {
+    "series-define": {
+      "description": "Create and manage article series with automatic quality checks",
+      "file": "commands/series-define.md",
+      "agents": ["quality-checker"]
+    }
+  },
+  "agents": {
+    "quality-checker": {
+      "description": "Automatic article quality analysis and correction",
+      "file": "agents/quality-checker.md",
+      "auto_invoke": true,
+      "trigger": "after_article_creation"
+    }
+  },
+  "quality_standards": {
+    "target_score": 95,
+    "critical_threshold": 80,
+    "auto_fix_enabled": true,
+    "auto_fix_categories": [
+      "duplicate_metadata",
+      "typescript_types",
+      "markdown_syntax",
+      "version_notation",
+      "trailing_whitespace"
+    ]
+  },
+  "templates": {
+    "base_path": "articles/shared-templates/",
+    "optimized_format": "optimized-format.md",
+    "series_common": "series-common.md",
+    "english_templates": "english-templates.md"
+  }
+}

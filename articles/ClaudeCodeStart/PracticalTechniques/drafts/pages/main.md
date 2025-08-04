@@ -1,12 +1,8 @@
 # 実践テクニック + 失敗回避の極意 - Claude Code入門ガイド #3
 
 <!--
-Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング
+Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング, セキュリティ, パフォーマンス, 開発効率, API
 Generated at: 2025-08-04T08:33:10.309208
--->
-<!--
-Generated Tags: Claude, セキュリティ, パフォーマンス, 開発効率, API
-Generated at: 2025-08-03T16:45:14.345678
 -->
 
 
@@ -89,15 +85,15 @@ TaskFlowプロジェクトの詳細版CLAUDE.md：
 ```typescript
 // 権限レベル定義
 type UserRole = 'admin' | 'manager' | 'member' | 'viewer';
+type UserPermission = 'create' | 'read' | 'update' | 'update_own' | 'delete' | 'archive';
 
 // 操作権限マトリックス
-const permissions = {
+const permissions: Record<UserRole, UserPermission[]> = {
   admin: ['create', 'read', 'update', 'delete', 'archive'],
   manager: ['create', 'read', 'update', 'archive'],
   member: ['create', 'read', 'update_own'],
   viewer: ['read']
 };
-```
 ```
 
 ### 2. セキュリティ要件の具体化

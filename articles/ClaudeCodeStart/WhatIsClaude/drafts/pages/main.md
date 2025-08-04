@@ -1,12 +1,8 @@
 # CLAUDE.mdとは何か？なぜ必要なのか？ - Claude Code入門ガイド #1
 
 <!--
-Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング
+Generated Tags: Claude, AI, ドキュメント, ツール, プログラミング, 開発効率
 Generated at: 2025-08-04T08:33:10.308251
--->
-<!--
-Generated Tags: Claude, AI, 開発効率, プログラミング, ドキュメント
-Generated at: 2025-08-03T16:45:12.123456
 -->
 
 
@@ -47,7 +43,7 @@ AI: 「JWT の形式は？有効期限は？」
 人間: 「うーん、コード見て...」
 ```
 
-```markdown  
+```markdown
 # CLAUDE.md がある場合の会話例
 人間: 「このAPI呼び出し部分、なんかおかしくない？」
 AI: 「OAuth2.0 + JWT認証のREST APIですね。有効期限1時間の設定で確認します。」
