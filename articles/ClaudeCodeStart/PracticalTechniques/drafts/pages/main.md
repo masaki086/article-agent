@@ -64,11 +64,9 @@ TaskFlowプロジェクトの詳細版CLAUDE.md：
 ## タスク管理のビジネスルール
 
 ### タスクの状態遷移
-```
 新規作成 → 進行中 → レビュー待ち → 完了
     ↓         ↓         ↓
   保留中    保留中    差し戻し → 進行中
-```
 
 ### 状態変更の制約
 - **新規→進行中**: 担当者設定必須、期限設定必須
@@ -82,18 +80,20 @@ TaskFlowプロジェクトの詳細版CLAUDE.md：
 - 長期保留: 30日間更新なしで自動アーカイブ
 
 ### 権限別の操作制限
-```typescript
-// 権限レベル定義
-type UserRole = 'admin' | 'manager' | 'member' | 'viewer';
-type UserPermission = 'create' | 'read' | 'update' | 'update_own' | 'delete' | 'archive';
 
-// 操作権限マトリックス
-const permissions: Record<UserRole, UserPermission[]> = {
-  admin: ['create', 'read', 'update', 'delete', 'archive'],
-  manager: ['create', 'read', 'update', 'archive'],
-  member: ['create', 'read', 'update_own'],
-  viewer: ['read']
-};
+**TypeScript:**
+
+    // 権限レベル定義
+    type UserRole = 'admin' | 'manager' | 'member' | 'viewer';
+    type UserPermission = 'create' | 'read' | 'update' | 'update_own' | 'delete' | 'archive';
+
+    // 操作権限マトリックス
+    const permissions: Record<UserRole, UserPermission[]> = {
+      admin: ['create', 'read', 'update', 'delete', 'archive'],
+      manager: ['create', 'read', 'update', 'archive'],
+      member: ['create', 'read', 'update_own'],
+      viewer: ['read']
+    };
 ```
 
 ### 2. セキュリティ要件の具体化
@@ -230,17 +230,18 @@ const permissions: Record<UserRole, UserPermission[]> = {
 # エラーハンドリング方針
 
 ## API エラーレスポンス形式
-```typescript
-interface ErrorResponse {
-  error: {
-    code: string;           // "VALIDATION_ERROR"
-    message: string;        // "ユーザーフレンドリーなメッセージ"
-    details?: any;          // 詳細情報（開発環境のみ）
-    timestamp: string;      // ISO 8601 format
-    path: string;          // API パス
-  }
-}
-```
+
+**TypeScript:**
+
+    interface ErrorResponse {
+      error: {
+        code: string;           // "VALIDATION_ERROR"
+        message: string;        // "ユーザーフレンドリーなメッセージ"
+        details?: any;          // 詳細情報（開発環境のみ）
+        timestamp: string;      // ISO 8601 format
+        path: string;          // API パス
+      }
+    }
 
 ## エラー分類とHTTPステータス
 - 400: バリデーションエラー
@@ -373,11 +374,10 @@ UIについて「直感的で使いやすく」とだけ書いたら：
 
 ## Business Logic Details
 ### Task State Transitions
-```
-New → In Progress → Under Review → Completed
- ↓        ↓           ↓
-Pending  Pending   Rejected → In Progress
-```
+
+    New → In Progress → Under Review → Completed
+     ↓        ↓           ↓
+    Pending  Pending   Rejected → In Progress
 
 ### State Change Constraints
 - **New→In Progress**: Assignee required, Due date required
@@ -412,17 +412,18 @@ Pending  Pending   Rejected → In Progress
 
 ## Error Handling Policy
 ### API Error Response Format
-```typescript
-interface ErrorResponse {
-  error: {
-    code: string;        // "VALIDATION_ERROR"
-    message: string;     // User-friendly message
-    details?: any;       // Detailed info (dev only)
-    timestamp: string;   // ISO 8601 format
-    path: string;       // API path
-  }
-}
-```
+
+**TypeScript:**
+
+    interface ErrorResponse {
+      error: {
+        code: string;        // "VALIDATION_ERROR"
+        message: string;     // User-friendly message
+        details?: any;       // Detailed info (dev only)
+        timestamp: string;   // ISO 8601 format
+        path: string;       // API path
+      }
+    }
 
 ### Error Classification
 - 400: Validation errors

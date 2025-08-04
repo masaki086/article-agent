@@ -589,7 +589,7 @@ interface ErrorResponse {
 - [HTTP status code]: [error type and handling]
 
 # File Structure
-```
+```bash
 [project structure with explanations]
 src/
 ├── [directory]/     # [purpose and contents]

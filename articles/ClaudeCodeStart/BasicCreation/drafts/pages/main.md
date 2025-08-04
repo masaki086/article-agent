@@ -210,11 +210,9 @@ CLAUDE.mdがあれば、新しいメンバーが参加しても：
 - chore: ビルド・補助ツール変更
 
 **例:**
-```
 feat: ユーザー認証機能を追加 (#123)
 fix: タスク削除時のエラーを修正 (#124)  
 docs: README.mdにAPI仕様を追加 (#125)
-```
 
 ### プルリクエストルール
 - develop → mainのマージは管理者のみ
@@ -252,19 +250,20 @@ docs: README.mdにAPI仕様を追加 (#125)
 - Happy Path + Edge Case の両方をカバー
 
 **テスト例:**
-```typescript
-describe('TaskList Component', () => {
-  test('タスクが正常に表示される', () => {
-    // Arrange: テストデータ準備
-    // Act: コンポーネント描画
-    // Assert: 期待値チェック
-  });
-});
+
+**TypeScript (Jest):**
+
+    describe('TaskList Component', () => {
+      test('タスクが正常に表示される', () => {
+        // Arrange: テストデータ準備
+        // Act: コンポーネント描画
+        // Assert: 期待値チェック
+      });
+    });
 ```
 
 ## Step5: ファイル構造とプロジェクト構成
 
-```markdown
 # ファイル構造
 
 ## ディレクトリ構成
@@ -301,7 +300,6 @@ src/
 - ページファイル: kebab-case.tsx  
 - ユーティリティ: camelCase.ts
 - 型定義ファイル: camelCase.types.ts
-```
 
 ## Tanukichiの失敗談
 
@@ -363,7 +361,6 @@ src/
 - iOS 13.0+
 - Android API Level 21+
 - 画面サイズ: iPhone SE ~ iPhone 14 Pro Max
-```
 
 ## 英語版コピペ用
 
