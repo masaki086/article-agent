@@ -16,6 +16,25 @@ export class ArticleLoader {
     this.baseDir = baseDir || path.resolve(__dirname, '../../../../articles');
   }
 
+  private removeImages(content: string): string {
+    // Remove markdown image syntax: ![alt text](url)
+    const imageRegex = /!\[([^\]]*)\]\([^)]+\)/g;
+    let cleanContent = content.replace(imageRegex, '');
+    
+    // Remove any empty lines that were left after image removal
+    cleanContent = cleanContent.replace(/\n\s*\n\s*\n/g, '\n\n');
+    
+    // Remove image caption lines (single * followed by caption text)
+    // Make sure to only match lines that start with a single * followed by a space
+    // and do not contain ** (bold text markers)
+    cleanContent = cleanContent.replace(/^\*\s+[^*\n][^\n]*$/gm, '');
+    
+    // Clean up multiple consecutive empty lines again
+    cleanContent = cleanContent.replace(/\n\s*\n\s*\n/g, '\n\n');
+    
+    return cleanContent.trim();
+  }
+
   private extractMetadata(content: string): { title: string; tags: QiitaTag[] } {
     const lines = content.split('\n');
     let title = '';
@@ -51,14 +70,20 @@ export class ArticleLoader {
     return { title, tags };
   }
 
-  async loadArticle(metadata: ArticleMetadata): Promise<QiitaArticle> {
+  async loadArticle(metadata: ArticleMetadata, removeImages: boolean = false): Promise<QiitaArticle> {
     const filePath = metadata.filePath;
 
     if (!fs.existsSync(filePath)) {
       throw new Error(`Article file not found: ${filePath}`);
     }
 
-    const content = fs.readFileSync(filePath, 'utf-8');
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Remove images if requested (for Qiita upload)
+    if (removeImages) {
+      content = this.removeImages(content);
+    }
+    
     const { title, tags: extractedTags } = this.extractMetadata(content);
 
     if (!title) {
