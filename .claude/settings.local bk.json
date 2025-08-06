@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(python:*)",
+      "Bash(rm:*)",
+      "Bash(ls:*)",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(mmdc:*)",
+      "Bash(bash optimization/scripts/*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(wc:*)",
+      "Bash(date:*)",
+      "Bash(open:*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "UserPromptSubmit": {
+      "command": "bash $CLAUDE_PROJECT_DIR/optimization/scripts/track-user-input.sh && bash $CLAUDE_PROJECT_DIR/optimization/scripts/log-conversation.sh 'USER' \"${prompt}\"",
+      "blocking": false,
+      "timeout": 3000
+    },
+    "SessionStart": {
+      "matchers": ["clear"],
+      "command": "bash $CLAUDE_PROJECT_DIR/optimization/scripts/reset-context.sh",
+      "blocking": false,
+      "timeout": 3000
+    },
+    "PostToolUse": {
+      "matchers": ["Read", "Edit", "Write"],
+      "command": "bash $CLAUDE_PROJECT_DIR/optimization/scripts/track-file-access.sh",
+      "blocking": false,
+      "timeout": 2000
+    },
+    "PostResponse": {
+      "command": "bash $CLAUDE_PROJECT_DIR/optimization/scripts/log-conversation.sh 'AI' \"${response}\" && bash $CLAUDE_PROJECT_DIR/optimization/scripts/calculate-tokens.sh > /dev/null 2>&1 && bash $CLAUDE_PROJECT_DIR/optimization/scripts/update-dashboard-js.sh",
+      "blocking": false,
+      "timeout": 3000
+    }
+  }
+}

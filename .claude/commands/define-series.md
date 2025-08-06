@@ -1,4 +1,5 @@
 # Series Definition Interactive Command (v2.0)
+# Guard document: /internal/command-guards/define-series-guard.md
 
 ## Command Purpose
 Guide users through creating optimized article series definitions with proper structure and unified persona selection. Creates series configuration files only - does NOT proceed to article creation.

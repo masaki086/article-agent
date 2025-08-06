@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Debug</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .good { color: green; }
+        .bad { color: red; }
+        pre { background: #f4f4f4; padding: 10px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard Debug Info</h1>
+    
+    <h2>1. データファイルの存在確認</h2>
+    <p>dashboard-data.js が同じディレクトリにあることを確認してください。</p>
+    
+    <h2>2. データ読み込みテスト</h2>
+    <div id="data-test">テスト中...</div>
+    
+    <h2>3. 現在のデータ内容</h2>
+    <pre id="data-content"></pre>
+    
+    <h2>4. 手動でデータを確認</h2>
+    <button onclick="checkData()">データ確認</button>
+    <div id="manual-check"></div>
+    
+    <script src="dashboard-data.js"></script>
+    <script>
+        // 初期チェック
+        function initialCheck() {
+            const testDiv = document.getElementById('data-test');
+            const contentDiv = document.getElementById('data-content');
+            
+            if (typeof window.dashboardData !== 'undefined') {
+                testDiv.innerHTML = '<span class="good">✅ データ読み込み成功</span>';
+                contentDiv.textContent = JSON.stringify(window.dashboardData, null, 2);
+                
+                // 主要データの表示
+                document.getElementById('manual-check').innerHTML = `
+                    <h3>主要データ:</h3>
+                    <ul>
+                        <li>タイムスタンプ: ${window.dashboardData.timestamp}</li>
+                        <li>コンテキストサイズ: ${window.dashboardData.tokens.total} tokens</li>
+                        <li>ターン数: ${window.dashboardData.session.turns}/${window.dashboardData.session.maxTurns}</li>
+                        <li>ファイル参照数: ${window.dashboardData.session.fileCount}</li>
+                        <li>トークン使用量: ${window.dashboardData.session.totalTokensUsed} tokens</li>
+                        <li>状態: ${window.dashboardData.status.level} ${window.dashboardData.status.message}</li>
+                    </ul>
+                `;
+            } else {
+                testDiv.innerHTML = '<span class="bad">❌ データ読み込み失敗</span>';
+                contentDiv.textContent = 'データが読み込まれていません';
+            }
+        }
+        
+        function checkData() {
+            initialCheck();
+        }
+        
+        // ページ読み込み時に実行
+        setTimeout(initialCheck, 100);
+        
+        // データ更新時のコールバック
+        window.onDashboardDataLoaded = function(data) {
+            console.log('Data updated via callback:', data);
+            initialCheck();
+        };
+    </script>
+</body>
+</html>

@@ -13,22 +13,24 @@ import sys
 
 def load_series_list():
     """Load available series from articles directory"""
-    articles_dir = Path("articles")
+    # Check both possible locations for series
+    possible_dirs = [Path("articles/series"), Path("articles")]
     series_list = []
     
-    if articles_dir.exists():
-        for item in articles_dir.iterdir():
-            if item.is_dir() and not item.name.startswith('.') and item.name != 'shared-templates':
-                # Check if series has articles
-                has_articles = False
-                for subdir in item.iterdir():
-                    if subdir.is_dir() and (subdir / "drafts" / "pages").exists():
-                        has_articles = True
-                        break
-                if has_articles:
-                    series_list.append(item.name)
+    for articles_dir in possible_dirs:
+        if articles_dir.exists():
+            for item in articles_dir.iterdir():
+                if item.is_dir() and not item.name.startswith('.') and item.name not in ['shared-templates', 'personas', 'resources', 'series']:
+                    # Check if series has articles
+                    has_articles = False
+                    for subdir in item.iterdir():
+                        if subdir.is_dir() and (subdir / "drafts" / "pages").exists():
+                            has_articles = True
+                            break
+                    if has_articles:
+                        series_list.append(item.name)
     
-    return sorted(series_list)
+    return sorted(list(set(series_list)))  # Remove duplicates and sort
 
 def check_qiita_token():
     """Verify Qiita token exists"""
@@ -48,19 +50,23 @@ def check_qiita_token():
 
 def count_articles(series_name):
     """Count articles in a series"""
-    series_dir = Path("articles") / series_name
+    # Check both possible locations
+    possible_dirs = [Path("articles/series") / series_name, Path("articles") / series_name]
     count = 0
     
-    for subdir in series_dir.iterdir():
-        if subdir.is_dir():
-            draft_file = subdir / "drafts" / "pages" / "article.md"
-            alt_files = [
-                subdir / "drafts" / "pages" / "main.md",
-                subdir / "drafts" / "pages" / f"{subdir.name}.md"
-            ]
-            
-            if draft_file.exists() or any(f.exists() for f in alt_files):
-                count += 1
+    for series_dir in possible_dirs:
+        if series_dir.exists():
+            for subdir in series_dir.iterdir():
+                if subdir.is_dir():
+                    draft_file = subdir / "drafts" / "pages" / "article.md"
+                    alt_files = [
+                        subdir / "drafts" / "pages" / "main.md",
+                        subdir / "drafts" / "pages" / f"{subdir.name}.md"
+                    ]
+                    
+                    if draft_file.exists() or any(f.exists() for f in alt_files):
+                        count += 1
+            break  # Use the first directory that exists
     
     return count
 
@@ -195,8 +201,8 @@ def main():
         article_count = count_articles(selected_series)
         print(f"\n✅ Selected: {selected_series} ({article_count} articles)")
     
-    # Skip tag generation for now - using default tags
-    print(f"\n🏷️  Using default tags (Next.js, React, JavaScript, TypeScript, プログラミング)")
+    # Tags will be extracted from article frontmatter
+    print(f"\n🏷️  Tags will be extracted from each article's frontmatter")
     
     # Articles will be processed with images removed automatically
     print(f"\n📝 Preparing {selected_series} articles (images will be removed for text-only format)...")
@@ -266,8 +272,41 @@ def main():
         if link_success:
             print("\n✅ Series links added successfully!")
         else:
-            print("\n⚠️  Failed to add series links. You can retry with:")
-            print(f"   cd post/qiita && npm run update-links {selected_series}")
+            print("\n⚠️  Failed to add series links.")
+            print("-" * 50)
+            
+            # Show error details if available
+            if "error" in link_output.lower() or "fail" in link_output.lower():
+                print("Error details:")
+                # Show last 5 lines of error output
+                error_lines = link_output.split('\n')[-5:]
+                for line in error_lines:
+                    if line.strip():
+                        print(f"  {line}")
+            
+            # Ask if user wants to retry
+            print("\n🔄 Would you like to retry adding series links? (y/N):")
+            try:
+                retry_confirm = input("> ").lower()
+            except EOFError:
+                retry_confirm = 'n'
+            
+            if retry_confirm == 'y':
+                print("\n🔗 Retrying series link addition...")
+                print("-" * 50)
+                
+                # Retry the link update
+                retry_success, retry_output = run_npm_command("update-links", selected_series)
+                
+                if retry_success:
+                    print("\n✅ Series links added successfully on retry!")
+                else:
+                    print("\n❌ Series link addition failed again.")
+                    print("You can manually retry later with:")
+                    print(f"   cd post/qiita && npm run update-links {selected_series}")
+            else:
+                print("\nYou can manually add series links later with:")
+                print(f"   cd post/qiita && npm run update-links {selected_series}")
     
     # Final summary
     print("\n" + "=" * 50)

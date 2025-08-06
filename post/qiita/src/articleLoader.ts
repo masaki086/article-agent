@@ -13,7 +13,7 @@ export class ArticleLoader {
   private baseDir: string;
 
   constructor(baseDir?: string) {
-    this.baseDir = baseDir || path.resolve(__dirname, '../../../../articles');
+    this.baseDir = baseDir || path.resolve(__dirname, '../../../../articles/series');
   }
 
   private removeImages(content: string): string {
@@ -40,24 +40,46 @@ export class ArticleLoader {
     let title = '';
     const tags: QiitaTag[] = [];
 
-    // Extract title from first # heading
-    for (const line of lines) {
-      if (line.startsWith('# ')) {
-        title = line.substring(2).trim();
-        break;
+    // First check for frontmatter title
+    const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1];
+      const titleMatch = frontmatter.match(/title:\s*["']?(.+?)["']?\s*$/m);
+      if (titleMatch) {
+        title = titleMatch[1].trim().replace(/^["']|["']$/g, '');
       }
     }
 
-    // Look for generated tags in comments first
-    const generatedTagMatch = content.match(/<!--\s*Generated Tags:\s*([^-]+)\s*Generated at:/s);
-    if (generatedTagMatch) {
-      const tagNames = generatedTagMatch[1].split(',').map(t => t.trim());
-      tags.push(...tagNames.map(name => ({ name })));
-    } else {
-      // Look for tags in frontmatter or comments (fallback)
-      const tagMatch = content.match(/tags:\s*\[(.*?)\]/s);
-      if (tagMatch) {
-        const tagNames = tagMatch[1].split(',').map(t => t.trim().replace(/['"]/g, ''));
+    // If no frontmatter title, extract from first # heading
+    if (!title) {
+      for (const line of lines) {
+        if (line.startsWith('# ')) {
+          title = line.substring(2).trim();
+          break;
+        }
+      }
+    }
+
+    // Check for tags in frontmatter first
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1];
+      const tagsMatch = frontmatter.match(/tags:\s*(.+?)$/m);
+      if (tagsMatch) {
+        const tagString = tagsMatch[1].trim();
+        // Handle both comma-separated and array formats
+        const tagNames = tagString
+          .replace(/^\[|\]$/g, '') // Remove array brackets if present
+          .split(',')
+          .map(t => t.trim().replace(/^["']|["']$/g, ''));
+        tags.push(...tagNames.map(name => ({ name })));
+      }
+    }
+    
+    // If no frontmatter tags, look for generated tags in comments
+    if (tags.length === 0) {
+      const generatedTagMatch = content.match(/<!--\s*Generated Tags:\s*([^-]+)\s*Generated at:/s);
+      if (generatedTagMatch) {
+        const tagNames = generatedTagMatch[1].split(',').map(t => t.trim());
         tags.push(...tagNames.map(name => ({ name })));
       }
     }
@@ -79,15 +101,22 @@ export class ArticleLoader {
 
     let content = fs.readFileSync(filePath, 'utf-8');
     
-    // Remove images if requested (for Qiita upload)
-    if (removeImages) {
-      content = this.removeImages(content);
-    }
-    
+    // Extract metadata first
     const { title, tags: extractedTags } = this.extractMetadata(content);
 
     if (!title) {
       throw new Error(`No title found in article: ${filePath}`);
+    }
+
+    // Remove frontmatter from content
+    const frontmatterMatch = content.match(/^---\s*\n[\s\S]*?\n---\s*\n/);
+    if (frontmatterMatch) {
+      content = content.slice(frontmatterMatch[0].length);
+    }
+    
+    // Remove images if requested (for Qiita upload)
+    if (removeImages) {
+      content = this.removeImages(content);
     }
 
     return {

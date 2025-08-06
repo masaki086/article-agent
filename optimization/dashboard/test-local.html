@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Test</title>
+</head>
+<body>
+    <h1>Dashboard Data Test</h1>
+    <div id="data-check">Loading...</div>
+    
+    <h2>Dashboard Links:</h2>
+    <ul>
+        <li><a href="dashboard.html">Main Dashboard</a></li>
+        <li><a href="test-dashboard.html">Test Dashboard</a></li>
+        <li><a href="debug.html">Debug Dashboard</a></li>
+    </ul>
+    
+    <h2>Data Status:</h2>
+    <pre id="data-content"></pre>
+    
+    <script src="dashboard-data.js"></script>
+    <script>
+        // Check if data is loaded
+        if (window.dashboardData) {
+            document.getElementById('data-check').innerHTML = '✅ Data loaded successfully!';
+            document.getElementById('data-content').textContent = JSON.stringify(window.dashboardData, null, 2);
+        } else {
+            document.getElementById('data-check').innerHTML = '❌ Data not loaded';
+        }
+    </script>
+</body>
+</html>
