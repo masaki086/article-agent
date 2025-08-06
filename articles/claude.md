@@ -9,21 +9,51 @@
 
 ### Phase 1: シリーズ定義（1回のみ）
 
+#### ⚠️ コンテキスト管理
+/fix: シリーズ定義前の必須処理
+- コンテキストが5K token以上の場合 → `/reset` 実行
+- 長い会話の後では必ず `/reset` を実行
+- 前の会話の影響を排除してクリーンな状態で開始
+
 /todo: シリーズ作成時のタスク
-- [ ] `/series-define` コマンドを実行
+- [ ] コンテキストサイズを確認（5K token超なら `/reset`）
+- [ ] `/define-series` コマンドを実行
 - [ ] 対話的にシリーズ設計を完了
+- [ ] **必須ファイルの作成を確認** ⚠️
+  - [ ] author.md が作成されている
+  - [ ] reviewer.md が作成されている
+  - [ ] series-common.md が作成されている
+  - [ ] README.md が作成されている
 - [ ] 共有テンプレートの確認
 - [ ] ペルソナ設定の完了
+- [ ] **ここで必ず停止** - 記事執筆には進まない
 
 #### 共有テンプレート参照
 - `/articles/shared-templates/series-common.md`: 共通キャラクター設定
 - `/articles/shared-templates/english-templates.md`: 英語版テンプレート統合
 - `/articles/shared-templates/optimized-format.md`: トークン効率化フォーマット
 
-#### シリーズ固有設定
-- `author.md`: 執筆者ペルソナ（/personas/individuals/参照）
-- `reviewer.md`: レビュー体制設定
-- `format.md`: シリーズ固有の文体調整（必要時のみ）
+#### シリーズ固有設定（必須作成）
+- `author.md`: 執筆者ペルソナ（/personas/individuals/参照）✅ 必須
+- `reviewer.md`: レビュー体制設定 ✅ 必須
+- `series-common.md`: シリーズ共通設定 ✅ 必須
+- `README.md`: シリーズ概要 ✅ 必須
+- `format.md`: シリーズ固有の文体調整（オプション）
+
+#### ワークフロー分離ルール
+```yaml
+workflow-separation:
+  phase1-definition:
+    - シリーズコンセプト決定
+    - 必須ファイル作成
+    - ファイル作成確認
+    - 停止（記事執筆に進まない）
+  
+  phase2-article: # 別セッションで実行
+    - 新しい会話を開始
+    - 作成済みシリーズファイルを参照
+    - 記事執筆開始
+```
 
 ### Phase 2: 記事作成フェーズ
 

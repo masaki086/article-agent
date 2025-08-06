@@ -58,10 +58,11 @@ calculate_conversation_tokens() {
         total=$((conv_chars / 3))
     fi
     
-    # ターン数からの推定値を加算（1ターンあたり平均1000トークンと仮定）
+    # ターン数からの推定値を加算（累積的に増加）
     if [ -f "$CONTEXT_DIR/.turn_count" ]; then
         local turns=$(cat "$CONTEXT_DIR/.turn_count")
-        total=$((total + turns * 1000))
+        # ターン数に応じて累積的に増加（1ターン目1500、2ターン目2000、3ターン目2500...）
+        total=$((total + turns * 1500 + turns * 500))
     fi
     
     echo $total

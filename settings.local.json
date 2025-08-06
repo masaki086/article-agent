@@ -11,7 +11,7 @@
       "timeout": 5000
     },
     "file-change": {
-      "command": "echo \"$(date '+%H:%M:%S')|${file_path}|edit|0\" >> optimization/context/.file_access.log",
+      "command": "echo \"$(date '+%H:%M:%S')|${file_path}|${operation}|$(wc -c < \"${file_path}\" 2>/dev/null | awk '{print int($1/3)}' || echo 0)\" >> optimization/context/.file_access.log",
       "blocking": false,
       "timeout": 1000
     }
