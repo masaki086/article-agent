@@ -12,7 +12,7 @@
 
 # 執筆者ペルソナ: {persona_id}
 
-参照ファイル: /personas/authors/{persona_id}.md
+参照ファイル: /articles/personas/authors/{persona_id}.md
 
 ## カスタマイズ（このシリーズ専用）
 

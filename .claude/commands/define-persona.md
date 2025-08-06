@@ -6,15 +6,15 @@ Guide users through creating detailed, consistent persona definitions for author
 ## Required Reading
 Before persona definition, this command references:
 - `/claude.md`: Project-wide workflow and optimization guidelines
-- `/personas/template_persona.md`: Persona structure template
-- Existing personas in `/personas/` subdirectories for consistency
+- `/articles/personas/template_persona.md`: Persona structure template
+- Existing personas in `/articles/personas/` subdirectories for consistency
 
 ## Interaction Flow
 
 ### Step 1: Operation Mode Detection
 First, determine if this is a new persona or updating an existing one:
 
-1. **Check for Existing Persona**: Look for `{persona_name}.md` in `/personas/individuals/`
+1. **Check for Existing Persona**: Look for `{persona_name}.md` in `/articles/personas/individuals/`
 2. **Operation Mode Selection**:
    - **New Persona Creation**: If persona doesn't exist
    - **Persona Update**: If persona exists, ask "Do you want to update the existing persona or create a new one?"
@@ -298,7 +298,7 @@ Please specify what you'd like to change, and I'll guide you through the update 
 After collecting information, generate:
 
 ### 1. Complete Unified Persona File
-Based on the template structure in `/personas/unified-persona-template.md`:
+Based on the template structure in `/articles/personas/unified-persona-template.md`:
 
 ```markdown
 **日付:** {current_date} | **バージョン:** 1.0

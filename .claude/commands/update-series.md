@@ -7,7 +7,7 @@ Update existing article series to apply new formatting, numbering system, struct
 Before series update, this command references:
 - `/claude.md`: Current project-wide workflow and optimization guidelines
 - `/articles/shared-templates/`: Latest optimization templates
-- `/personas/individuals/`: Current unified persona definitions
+- `/articles/personas/individuals/`: Current unified persona definitions
 - Existing series files: `series-common.md`, `author.md`, `reviewer.md`
 
 ## Update Capabilities

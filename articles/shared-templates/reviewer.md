@@ -19,7 +19,7 @@
 ### 校正者
 
 ペルソナ ID: {proofreader_id}
-参照ファイル: /personas/proofreaders/{proofreader_id}.md
+参照ファイル: /articles/personas/proofreaders/{proofreader_id}.md
 
 #### このシリーズでの重点項目
 - **技術用語の一貫性**: {technical_term_consistency}
@@ -29,7 +29,7 @@
 ### レビュワー
 
 ペルソナ ID: {reviewer_id}
-参照ファイル: /personas/reviewers/{reviewer_id}.md
+参照ファイル: /articles/personas/reviewers/{reviewer_id}.md
 
 #### このシリーズでの評価観点
 - **実践性**: {practicality_check}
@@ -44,7 +44,7 @@
 ### 読者ペルソナ
 
 #### 読者ペルソナ 1: {reader_persona_1}
-参照ファイル: /personas/readers/{reader_persona_1}.md
+参照ファイル: /articles/personas/readers/{reader_persona_1}.md
 
 ##### このシリーズでの想定前提知識
 - {prerequisite_1}
@@ -57,7 +57,7 @@
 - {goal_3}
 
 #### 読者ペルソナ 2: {reader_persona_2}
-参照ファイル: /personas/readers/{reader_persona_2}.md
+参照ファイル: /articles/personas/readers/{reader_persona_2}.md
 
 ##### このシリーズでの想定前提知識
 - {intermediate_prerequisite_1}

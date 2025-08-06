@@ -252,7 +252,7 @@ TodoWrite({
 
 ```markdown
 # author.md の例
-参照ファイル: /personas/individuals/tanukichi.md
+参照ファイル: /articles/personas/individuals/tanukichi.md
 テンプレート: /articles/shared-templates/author.md
 
 ## カスタマイズ（このシリーズ専用）

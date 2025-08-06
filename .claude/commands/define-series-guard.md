@@ -19,7 +19,7 @@ before-define-series:
 ```yaml
 required-files:
   - path: "articles/{SeriesName}/author.md"
-    content: "Persona reference from /personas/individuals/"
+    content: "Persona reference from /articles/personas/individuals/"
     validation: "Must exist before proceeding"
     
   - path: "articles/{SeriesName}/reviewer.md"

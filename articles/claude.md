@@ -34,25 +34,33 @@
 - `/articles/shared-templates/optimized-format.md`: トークン効率化フォーマット
 
 #### シリーズ固有設定（必須作成）
-- `author.md`: 執筆者ペルソナ（/personas/individuals/参照）✅ 必須
+- `author.md`: 執筆者ペルソナ（/articles/personas/individuals/参照）✅ 必須
 - `reviewer.md`: レビュー体制設定 ✅ 必須
 - `series-common.md`: シリーズ共通設定 ✅ 必須
 - `README.md`: シリーズ概要 ✅ 必須
 - `format.md`: シリーズ固有の文体調整（オプション）
 
-#### ワークフロー分離ルール
+#### ワークフロー分離ルール（v2.0 - 2025-08-06更新）
 ```yaml
 workflow-separation:
   phase1-definition:
-    - シリーズコンセプト決定
-    - 必須ファイル作成
-    - ファイル作成確認
-    - 停止（記事執筆に進まない）
-  
-  phase2-article: # 別セッションで実行
-    - 新しい会話を開始
-    - 作成済みシリーズファイルを参照
-    - 記事執筆開始
+    command: /define-series
+    saves_to: /articles/shared-templates/series/{SeriesName}/
+    creates:
+      - personas-roles.md  # 統合人格定義
+      - format.md         # フォーマット定義
+      - README.md         # シリーズ概要
+    stops_after: ファイル作成完了
+    
+  phase2-article:
+    command: /create-article --series {SeriesName}
+    references: /articles/shared-templates/series/{SeriesName}/
+    options:
+      - template: technical/tutorial/discussion
+      - custom-format: true/false
+      - custom-persona: {persona_id}
+      - workflow: interactive/automatic/resource-based
+    saves_to: /articles/series/{SeriesName}/{ArticleName}/
 ```
 
 ### Phase 2: 記事作成フェーズ
@@ -176,18 +184,26 @@ workflow-separation:
   - ArticleNameには「article」を含めない
 - **テンプレート**: shared-templates配下のファイル名には「template」を含めない
 
-### 記事ファイル配置
+### 記事ファイル配置（v2.0構造）
 ```
-articles/{SeriesName}/
-├── author.md                 # ペルソナ参照
-├── reviewer.md               # レビュー設定
-└── {N}-{ArticleName}/
-    ├── drafts/
-    │   ├── pages/           # 記事本文
-    │   ├── images/          # 画像ファイル
-    │   └── diagrams/        # 図表ファイル
-    ├── published/           # 公開済み
-    └── reviews/             # レビュー結果
+articles/
+├── shared-templates/
+│   ├── series/{SeriesName}/    # シリーズ定義
+│   │   ├── personas-roles.md   # 統合人格定義
+│   │   ├── format.md           # フォーマット定義
+│   │   └── README.md           # シリーズ概要
+│   ├── base/                   # 基本テンプレート
+│   ├── patterns/               # パターンテンプレート
+│   └── optimization/           # 最適化ファイル
+└── series/{SeriesName}/        # 実際の記事
+    └── {N}-{ArticleName}/
+        ├── custom/              # カスタム定義（オプション）
+        ├── drafts/
+        │   ├── pages/          # 記事本文
+        │   ├── images/         # 画像ファイル
+        │   └── diagrams/       # 図表ファイル
+        ├── published/          # 公開済み
+        └── reviews/            # レビュー結果
 ```
 
 /fix: ディレクトリ構造の自動生成

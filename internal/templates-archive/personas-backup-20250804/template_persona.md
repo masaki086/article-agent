@@ -7,9 +7,9 @@
 ## 使用方法
 
 このテンプレートを以下のディレクトリにコピーして使用してください：
-- `/personas/readers/[persona-name].md` - 読者ペルソナ
-- `/personas/reviewers/[persona-name].md` - レビュワーペルソナ  
-- `/personas/proofreaders/[persona-name].md` - 校正者ペルソナ
+- `/articles/personas/readers/[persona-name].md` - 読者ペルソナ
+- `/articles/personas/reviewers/[persona-name].md` - レビュワーペルソナ  
+- `/articles/personas/proofreaders/[persona-name].md` - 校正者ペルソナ
 
 ## 👤 基本情報
 

@@ -252,7 +252,7 @@ TodoWrite({
 
 ```markdown
 # author.md example
-Reference File: /personas/individuals/tanukichi.md
+Reference File: /articles/personas/individuals/tanukichi.md
 Template: /articles/shared-templates/author.md
 
 ## Customization (Series-specific)

@@ -11,7 +11,7 @@
 ```markdown
 # 執筆者ペルソナ: [ペルソナ ID]
 
-参照ファイル: /personas/authors/[ペルソナ ID].md
+参照ファイル: /articles/personas/authors/[ペルソナ ID].md
 
 ## カスタマイズ（必要に応じて）
 
@@ -92,7 +92,7 @@
 ### 使用ペルソナ
 
 ペルソナ ID: [選択したペルソナ ID]
-参照ファイル: /personas/authors/[ペルソナ ID].md
+参照ファイル: /articles/personas/authors/[ペルソナ ID].md
 
 ### カスタマイズ内容
 
