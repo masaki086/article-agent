@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "user-prompt-submit": {
+      "command": "bash optimization/scripts/track-session.sh && bash optimization/scripts/update-dashboard.sh",
+      "blocking": false,
+      "timeout": 5000
+    },
+    "post-response": {
+      "command": "bash optimization/scripts/update-indicators.sh && bash optimization/scripts/calculate-tokens.sh > /dev/null 2>&1",
+      "blocking": false,
+      "timeout": 5000
+    },
+    "file-change": {
+      "command": "echo \"$(date '+%H:%M:%S')|${file_path}|edit|0\" >> optimization/context/.file_access.log",
+      "blocking": false,
+      "timeout": 1000
+    }
+  }
+}
