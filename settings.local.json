@@ -1,7 +1,7 @@
 {
   "hooks": {
     "user-prompt-submit": {
-      "command": "bash optimization/scripts/track-session.sh && bash optimization/scripts/update-dashboard.sh",
+      "command": "bash optimization/scripts/detect-engine.sh > /dev/null 2>&1 && bash optimization/scripts/track-session.sh && bash optimization/scripts/update-dashboard.sh",
       "blocking": false,
       "timeout": 5000
     },

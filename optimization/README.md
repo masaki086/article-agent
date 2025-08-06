@@ -23,22 +23,59 @@ optimization/
     └── thresholds.md            # 限界値の設定
 ```
 
-## 使用方法
+## セットアップ方法
 
-### 1. タスク開始時
-- `context/task-boundaries.md`に作業範囲を明記
-- 完了条件と最大ターン数を設定
-- 初期要件を`context/current-session.md`に記録
+### 1. optimizationフォルダをプロジェクトにコピー
+```bash
+cp -r optimization /path/to/your/project/
+```
 
-### 2. 作業中
-- 5ターンごとに`limits/indicators.md`を確認
-- 参照ファイルを`context/reference-files.md`に記録
-- 精度指標が閾値に近づいたら警告
+### 2. settings.local.jsonを作成または編集
+```json
+{
+  "hooks": {
+    "user-prompt-submit": {
+      "command": "bash optimization/scripts/detect-engine.sh > /dev/null 2>&1 && bash optimization/scripts/track-session.sh && bash optimization/scripts/update-dashboard.sh",
+      "blocking": false,
+      "timeout": 5000
+    },
+    "post-response": {
+      "command": "bash optimization/scripts/update-indicators.sh && bash optimization/scripts/calculate-tokens.sh > /dev/null 2>&1",
+      "blocking": false,
+      "timeout": 5000
+    },
+    "file-change": {
+      "command": "echo \"$(date '+%H:%M:%S')|${file_path}|edit|0\" >> optimization/context/.file_access.log",
+      "blocking": false,
+      "timeout": 1000
+    }
+  }
+}
+```
 
-### 3. タスク完了/中断時
-- 作業結果を`context/current-session.md`に保存
-- 次回継続ポイントを明記
-- セッションをリセットして新鮮な状態を維持
+### 3. 完了！
+**以上で自動的に動作開始します。** 手動操作は不要です。
+
+## 自動実行される内容
+
+### ユーザーが指示を入力するたびに（全自動）
+- ✅ ターン数が自動カウント
+- ✅ トークン使用量を計算
+- ✅ AIエンジンを検出して閾値調整
+- ✅ ダッシュボードが更新
+- ✅ 限界接近時に警告表示
+
+### 確認方法（必要な時のみ）
+```bash
+# 現在の状態を見る
+cat optimization/context/session-dashboard.md
+
+# 詳細なトークン使用量
+bash optimization/scripts/calculate-tokens.sh
+
+# 限界チェック
+bash optimization/scripts/check-limits.sh
+```
 
 ## 精度指標
 
