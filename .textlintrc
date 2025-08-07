@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": {
+      "sentence-length": {
+        "max": 120
+      },
+      "max-comma": {
+        "max": 5
+      },
+      "max-ten": {
+        "max": 4
+      },
+      "no-exclamation-question-mark": false,
+      "ja-no-weak-phrase": false,
+      "ja-no-successive-word": false,
+      "no-doubled-joshi": {
+        "strict": false
+      }
+    },
+    "no-dropping-the-ra": true,
+    "no-mix-dearu-desumasu": {
+      "preferInHeader": "",
+      "preferInBody": "である",
+      "preferInList": "である",
+      "strict": false
+    }
+  }
+}

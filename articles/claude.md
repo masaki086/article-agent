@@ -32,6 +32,7 @@
 - `/articles/shared-templates/series-common.md`: 共通キャラクター設定
 - `/articles/shared-templates/english-templates.md`: 英語版テンプレート統合
 - `/articles/shared-templates/optimized-format.md`: トークン効率化フォーマット
+- `/articles/shared-templates/workflows/`: 生成ワークフロー定義
 
 #### シリーズ固有設定（必須作成）
 - `author.md`: 執筆者ペルソナ（/articles/personas/individuals/参照）✅ 必須
@@ -59,11 +60,18 @@ workflow-separation:
       - template: technical/tutorial/discussion
       - custom-format: true/false
       - custom-persona: {persona_id}
-      - workflow: interactive/automatic/resource-based
+      - workflow: ai-persona/human-dialogue/hybrid
     saves_to: /articles/series/{SeriesName}/{ArticleName}/
 ```
 
 ### Phase 2: 記事作成フェーズ
+
+#### ワークフロー選択
+/fix: 記事作成時のワークフロー自動判定
+- シリーズ定義がある場合 → ai-persona
+- 人間の知見をベースにする場合 → human-dialogue
+- 両方を組み合わせる場合 → hybrid
+- 詳細: `/articles/shared-templates/workflows/generation-methods.md`
 
 #### A. 記事構成設計
 

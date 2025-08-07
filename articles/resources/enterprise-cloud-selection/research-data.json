@@ -1,0 +1,106 @@
+{
+  "supportingData": [
+    {
+      "type": "statistics",
+      "source": "https://www.cloudzero.com/blog/cloud-computing-statistics/",
+      "title": "90+ Cloud Computing Statistics: A 2025 Market Snapshot",
+      "relevantQuote": "92% of organizations use a multicloud approach, combining different public and private cloud service providers. Nearly 8 out of 10 companies incorporate multiple public clouds.",
+      "summary": "マルチクラウド採用率は92%に達し、企業の8割が複数のパブリッククラウドを利用",
+      "credibility": "high",
+      "relevanceToMain": "マルチクラウドが常態化している証拠"
+    },
+    {
+      "type": "statistics", 
+      "source": "https://www.flexera.com/blog/finops/cloud-computing-trends-flexera-2024-state-of-the-cloud-report/",
+      "title": "Flexera 2024 State of the Cloud Report",
+      "relevantQuote": "The adoption of sophisticated multi-cloud (89%) and hybrid cloud (73%) setups indicates a deepening commitment. 31% of enterprises have four or more cloud infrastructure providers.",
+      "summary": "企業の31%が4つ以上のクラウドプロバイダーを利用",
+      "credibility": "high",
+      "relevanceToMain": "部門別最適化の実態を裏付け"
+    },
+    {
+      "type": "case",
+      "source": "https://medium.com/@pedro.diniz.rocha/why-cloudflare-is-the-best-alternative-to-vercel-in-2024-an-in-depth-pricing-comparison-7e1d713f8fde",
+      "title": "Cloudflare vs Vercel Cost Analysis 2024",
+      "relevantQuote": "Vercel's serverless function costs can escalate quickly - one developer was hit with a shocking $23,000 bill when targeted by a DDoS attack. With Cloudflare Workers, such scenarios are managed with better cost predictability.",
+      "summary": "Cloudflareの予測可能な価格設定がVercelに対する優位性に",
+      "credibility": "medium",
+      "relevanceToMain": "コスト予測可能性の重要性を示す事例"
+    },
+    {
+      "type": "trend",
+      "source": "https://github.com/newsroom/press-releases/github-universe-2024",
+      "title": "GitHub Universe 2024 Multi-Model Announcement",
+      "relevantQuote": "GitHub CEO Thomas Dohmke emphasized that 'There is no one model to rule every scenario, and developers expect the agency to build with the models that work best for them.'",
+      "summary": "GitHub Copilotがマルチモデル対応を発表、Claude 3.5 Sonnet、Gemini 1.5 Pro、GPT-4oから選択可能に",
+      "credibility": "high",
+      "relevanceToMain": "AI開発ツール連携の新たな潮流"
+    },
+    {
+      "type": "expert",
+      "source": "https://www.anthropic.com/news/claude-4",
+      "title": "Claude Integration with GitHub Copilot",
+      "relevantQuote": "Claude's unique ability to interpret and generate code while maintaining deep contextual awareness makes it particularly useful for understanding long codebases.",
+      "summary": "ClaudeのGitHub Copilot統合により、長大なコードベースの理解が向上",
+      "credibility": "high",
+      "relevanceToMain": "AI連携がクラウド選定基準に影響"
+    },
+    {
+      "type": "statistics",
+      "source": "https://cast.ai/blog/cloud-automation-the-new-normal-in-the-tech-industry/",
+      "title": "Cloud Automation in 2024",
+      "relevantQuote": "AWS Managed Services demonstrates this with 95% of their actions being automated across all functions. Advanced MFT automation features reduced administrative costs by 58%.",
+      "summary": "自動化により管理コストを58%削減、AWSでは95%の作業を自動化",
+      "credibility": "high",
+      "relevanceToMain": "保守運用省力化の具体的な効果"
+    },
+    {
+      "type": "case",
+      "source": "https://www.pingcap.com/blog/scaling-to-the-cloud-tidb-serverless-vs-planetscale/",
+      "title": "TiDB Serverless Success Factors",
+      "relevantQuote": "TiDB Serverless provides true serverless with auto-scaling based on traffic, pay-as-you-go pricing, and the ability to scale to zero when not in use, resuming service in seconds.",
+      "summary": "TiDB Serverlessの成功要因：真のサーバーレス、使用量ベース課金、ゼロスケール対応",
+      "credibility": "high",
+      "relevanceToMain": "特化型サービスの成功パターン"
+    },
+    {
+      "type": "trend",
+      "source": "https://www.singlestore.com/blog/database-trends-of-2024/",
+      "title": "Database Trends of 2024",
+      "relevantQuote": "AI made a significant impact on the database world in 2024, with vectors becoming an add-on in every traditional database. Enterprises increasingly want optionality as cloud prices rise and vendor lock-in becomes a major concern.",
+      "summary": "2024年はAI機能がデータベースの標準機能化、ベンダーロックイン回避が重要課題に",
+      "credibility": "high",
+      "relevanceToMain": "ベンダーロックイン回避の重要性"
+    },
+    {
+      "type": "statistics",
+      "source": "https://www.g2.com/articles/cloud-computing-statistics",
+      "title": "Cloud Computing Statistics for 2024",
+      "relevantQuote": "For the first time, global cloud infrastructure spending will exceed $1 trillion in 2024. Businesses are projected to spend $678.8 billion on public cloud services in 2024, marking a 20.4% increase.",
+      "summary": "2024年のクラウドインフラ支出が初めて1兆ドルを突破",
+      "credibility": "high",
+      "relevanceToMain": "市場の急成長が新規参入の機会を創出"
+    },
+    {
+      "type": "expert",
+      "source": "https://www.transformingnetworkinfrastructure.com/topics/virtualization/articles/395844-enterprise-cloud-more-operational-efficiency-than-cost-savings.htm",
+      "title": "KPMG Enterprise Cloud Study",
+      "relevantQuote": "Cloud is being seen as more than a way of saving money, but rather as something more central to business. Organizations must transform their business processes.",
+      "summary": "KPMGによると、クラウドはコスト削減よりも業務効率化が主目的に",
+      "credibility": "high",
+      "relevanceToMain": "運用効率化の優先度を裏付け"
+    }
+  ],
+  "contradictingViews": [
+    {
+      "source": "https://www.bytebase.com/blog/planetscale-vs-neon/",
+      "viewpoint": "PlanetScaleが無料プランを廃止し、サーバーレス課金から従来型の課金モデルに移行",
+      "response": "市場の成熟により、単純なサーバーレスモデルだけでは差別化が困難になってきている証拠。後発は更なる付加価値が必要"
+    },
+    {
+      "source": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+      "viewpoint": "Snowflakeのような大規模プラットフォームが市場を支配",
+      "response": "大規模プラットフォームは汎用性を重視するため、特定用途では特化型サービスに機会がある"
+    }
+  ]
+}

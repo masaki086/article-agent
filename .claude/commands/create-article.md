@@ -1,10 +1,12 @@
-# Create Article Command (v1.0)
+# Create Article Command (v2.0)
 
 ## Command Purpose
-Create individual articles for an existing series with template selection, custom format options, and optimized context management.
+Unified article creation supporting multiple workflows: AI persona, human dialogue, and hybrid approaches.
 
-## ⚠️ PREREQUISITE
-**Series must already exist**: Run `/define-series` first to create series definition files in `/articles/shared-templates/series/{SeriesName}/`
+## Prerequisites
+- **For AI Persona**: Series must exist (run `/define-series` first)
+- **For Human Dialogue**: No prerequisites
+- **For Hybrid**: Flexible requirements
 
 ## Context Optimization Strategy
 
@@ -93,9 +95,11 @@ Options:
 Your choice:
 ```
 
-### Step 5: Workflow Selection
+### Step 5: Generation Method
+
+#### For AI Persona
 ```
-⚙️ Creation Workflow
+⚙️ Generation Method
 
 1. **Interactive** - Checkpoints for review
 2. **Automatic** - Generate complete article
@@ -103,6 +107,19 @@ Your choice:
 
 Your choice:
 ```
+
+#### For Human Dialogue
+Automatic workflow:
+1. Collect human insights (/collect-human)
+2. Research supporting data (/research-human)
+3. Generate article (/generate-human)
+
+#### For Hybrid
+Combined workflow:
+1. Collect human insights
+2. AI personas analyze
+3. Research additional data
+4. Generate comprehensive article
 
 ### Step 6: Custom File Creation (if needed)
 If custom format or persona selected:

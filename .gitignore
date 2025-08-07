@@ -12,6 +12,7 @@
 # ログファイル
 *.log
 logs/
+.claude/logs/
 
 # 一時ファイル
 tmp/
